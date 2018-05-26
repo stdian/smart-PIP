@@ -1,5 +1,6 @@
 
 from tkinter import *
+import threading
 import platform
 import time
 import sys
@@ -7,6 +8,9 @@ import os
 
 operation_system = platform.system()
 root = None
+setup = None
+text = None
+text2 = None
 #libraries
 
 main = ['Wheel', 'buildozer', 'ezprint', 'fleep', 'functools', 'pillow', 'pkgutil', 'pygame', 'setuptools', 'twine']
@@ -24,12 +28,6 @@ libraries = [main, math, data, web, django, kivy, gui, databases, console, other
 variables = []
 
 
-def clear_screen():
-	if operation_system == 'Windows':
-		os.system('cls')
-	elif operation_system == 'Linux' or operation_system == 'Darwin':
-		os.system('clear')
-
 def update_pip():
 	if operation_system == 'Windows':
 		os.system('python -m pip install --upgrade pip')
@@ -37,7 +35,35 @@ def update_pip():
 		os.system('pip3 install --upgrade pip')
 
 
+def install_window():
+	global text
+	global text2
+	global setup
+
+	setup = Tk()
+	setup.title('Installing libraries')
+	setup.geometry('400x125')
+	setup.resizable(0, 0)
+	setup.config(bg = '#C8C8C8')
+
+	text = Label(setup, text = 'Please wait')
+	text.config(font = ('Consolas', 15, 'bold'), bg = '#C8C8C8', height = 2)
+
+	text2 = Label(setup, text = 'Updating pip')
+	text2.config(font = ('Consolas', 15, 'bold'), bg = '#C8C8C8', height = 2)
+
+	text2.pack()
+	text.pack()
+
+
+	setup.mainloop()
+
+
 def install():
+	global text
+	global text2
+	global setup
+
 	root.destroy()
 	for_install = []
 
@@ -46,13 +72,22 @@ def install():
 			for lib in libraries[variables.index(var)]:
 				for_install.append(lib)
 
+	window_thread = threading.Thread(target=install_window)
+	window_thread.start()
+
 	update_pip()
 
 	for lib in for_install:
-		clear_screen()
-		print('installing ' + lib)
+		text.config(text = 'Installing ' + lib)
+		text2.config(text = str(for_install.index(lib) + 1) + ' / ' + str(len(for_install)))
 		os.system('pip3 install ' + lib + ' --no-cache-dir --upgrade')
 		time.sleep(1)
+
+	text2.config(text = 'All libraries was')
+	text.config(text = 'successfully install')
+	# text2.config(text = str(for_install.index(lib) + 1) + ' / ' + str(len(for_install)))
+
+	window_thread.join()
 
 
 def main():
