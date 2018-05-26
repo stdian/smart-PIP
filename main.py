@@ -1,6 +1,14 @@
-from tkinter import *
 
+from tkinter import *
+import platform
+import time
+import sys
+import os
+
+operation_system = platform.system()
+root = None
 #libraries
+
 main = ['Wheel', 'buildozer', 'ezprint', 'fleep', 'functools', 'pillow', 'pkgutil', 'pygame', 'setuptools', 'twine']
 math = ['altair', 'jupyter', 'numpy', 'scipy', 'scrapy', 'simpy']
 data = ['plotly', 'pandas', 'matplotlib', 'cycler', 'arrow', 'openpyxl', 'prettytable']
@@ -16,7 +24,21 @@ libraries = [main, math, data, web, django, kivy, gui, databases, console, other
 variables = []
 
 
+def clear_screen():
+	if operation_system == 'Windows':
+		os.system('cls')
+	elif operation_system == 'Linux' or operation_system == 'Darwin':
+		os.system('clear')
+
+def update_pip():
+	if operation_system == 'Windows':
+		os.system('python -m pip install --upgrade pip')
+	else:
+		os.system('pip3 install --upgrade pip')
+
+
 def install():
+	root.destroy()
 	for_install = []
 
 	for var in variables:
@@ -24,11 +46,18 @@ def install():
 			for lib in libraries[variables.index(var)]:
 				for_install.append(lib)
 
-	print(for_install)
+	update_pip()
+
+	for lib in for_install:
+		clear_screen()
+		print('installing ' + lib)
+		os.system('pip3 install ' + lib + ' --no-cache-dir --upgrade')
+		time.sleep(1)
 
 
 def main():
 	global variables
+	global root
 
 	root = Tk()
 
