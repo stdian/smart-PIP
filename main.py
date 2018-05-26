@@ -11,12 +11,12 @@ root = None
 setup = None
 text = None
 text2 = None
-#libraries
 
+#libraries
 main = ['Wheel', 'buildozer', 'ezprint', 'fleep', 'functools', 'pillow', 'pkgutil', 'pygame', 'setuptools', 'twine']
 math = ['altair', 'jupyter', 'numpy', 'scipy', 'scrapy', 'simpy']
-data = ['plotly', 'pandas', 'matplotlib', 'cycler', 'arrow', 'openpyxl', 'prettytable']
-web = ['beautifulsoup4', 'rdplib', 'requests', 'paramiko', 'wget', 'pyTelegramBotAPI', 'lxml', 'cssselect', 'email', 'cherrypy', 'mailbox', 'parsel', 'python-simplexml', 'pyramid']
+data = ['arrow', 'cycler', 'matplotlib', 'openpyxl', 'pandas', 'plotly', 'prettytable']
+web = ['beautifulsoup4', 'cherrypy', 'cssselect', 'email', 'lxml', 'mailbox', 'paramiko', 'parsel', 'pyTelegramBotAPI', 'pyramid', 'python-simplexml', 'rdplib', 'requests', 'wget']
 django = ['django', 'jinja']
 kivy = ['kivy', 'kivy.deps.angle', 'kivy.deps.glew', 'kivy.deps.gstreamer', 'kivy.deps.sdl2', 'kivy_examples']
 gui = ['turtle', 'wxPython']
