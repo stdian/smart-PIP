@@ -19,7 +19,7 @@ data = ['arrow', 'cycler', 'matplotlib', 'openpyxl', 'pandas', 'plotly', 'pretty
 web = ['beautifulsoup4', 'cherrypy', 'cssselect', 'email', 'lxml', 'mailbox', 'paramiko', 'parsel', 'pyTelegramBotAPI', 'pyramid', 'python-simplexml', 'rdplib', 'requests', 'wget']
 django = ['django', 'jinja']
 kivy = ['kivy', 'kivy.deps.angle', 'kivy.deps.glew', 'kivy.deps.gstreamer', 'kivy.deps.sdl2', 'kivy_examples']
-gui = ['turtle', 'wxPython']
+gui = ['wxPython']
 databases = ['mysqlclient', 'pyodbc', 'pypyodbc', 'sqlalchemy']
 console = ['argparse', 'colorama', 'termcolor']
 other = ['botocore', 'conf', 'cryptography', 'psutil', 'pygments']
@@ -29,10 +29,7 @@ variables = []
 
 
 def update_pip():
-	file = open('setup.vbs', 'w')
-	file.write('CreateObject("Wscript.Shell").Run "python -m pip install --upgrade pip",0,True')
-	file.close()
-	os.system('setup.vbs')
+	os.system('python -m pip install --upgrade pip')
 
 
 def install_window():
@@ -80,14 +77,7 @@ def install():
 	for lib in for_install:
 		text.config(text = 'Installing ' + lib)
 		text2.config(text = str(for_install.index(lib) + 1) + ' / ' + str(len(for_install)))
-		file = open('setup.vbs', 'w')
-		file.write('CreateObject("Wscript.Shell").Run "pip3 install ' + lib + ' --no-cache-dir --upgrade",0,True')
-		file.close()
-		os.system('setup.vbs')
-		time.sleep(1)
-
-	if os.path.isfile('setup.vbs'):
-		os.remove('setup.vbs')
+		os.system('pip3 install ' + lib + ' --no-cache-dir --upgrade')
 
 	text2.config(text = 'All libraries was')
 	text.config(text = 'successfully install')
