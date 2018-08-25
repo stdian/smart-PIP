@@ -12,7 +12,7 @@ text = None
 text2 = None
 
 #libraries
-main = ['Wheel', 'buildozer', 'cx_Freeze', 'ezprint', 'fleep', 'functools', 'pillow', 'pkgutil', 'pygame', 'setuptools', 'twine']
+main = ['Wheel', 'buildozer', 'cx_Freeze', 'ezprint', 'fleep', 'functools', 'pillow', 'pkgutil', 'pyautogui', 'pygame', 'setuptools', 'twine']
 math = ['altair', 'jupyter', 'numpy', 'scipy', 'scrapy', 'simpy']
 data = ['arrow', 'cycler', 'matplotlib', 'openpyxl', 'pandas', 'plotly', 'prettytable']
 web = ['beautifulsoup4', 'cherrypy', 'cssselect', 'email', 'lxml', 'mailbox', 'paramiko', 'parsel', 'pyTelegramBotAPI', 'pyramid', 'python-simplexml', 'rdplib', 'requests', 'wget']
